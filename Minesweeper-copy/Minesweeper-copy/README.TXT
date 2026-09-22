@@ -1,12 +1,10 @@
 ------------------------------------------------------------------------
-This is the project README file. Here, you should describe your project.
-Tell the reader (someone who does not know anything about this project)
-all they need to know. The comments should usually include at least:
+Minesweeper Idea, WIP
 ------------------------------------------------------------------------
 
-PROJECT TITLE:
-PURPOSE OF PROJECT:
-VERSION or DATE:
-HOW TO START THIS PROJECT:
-AUTHORS:
-USER INSTRUCTIONS:
+PROJECT TITLE: Minesweeper Idea
+PURPOSE OF PROJECT: Game Prog Project 
+VERSION or DATE: V.0.1
+HOW TO START THIS PROJECT: Open the folder on Greenfoot
+AUTHORS: Rafael Panesar, Samuel Lebeau-Seary, Anothan Sellakandu
+USER INSTRUCTIONS: You know how, trust me
