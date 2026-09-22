@@ -32,8 +32,10 @@ public class MinesweeperBoard extends World
         {
             for (int col = 0; col < 16; col++)
             {
-                //if (Greenfoot.getRandomNumber(10)){
-                //stuff idk    
+                if (Greenfoot.getRandomNumber(10) == 1) {
+                    //I don't know how to make certain tiles hold values (for bombs)
+                    System.out.println("mine at " + row + ", " + col);
+                }
                 
                 TileBlank tileBlank = new TileBlank();
                 addObject(tileBlank, x + col * 32, y + row * 32);
