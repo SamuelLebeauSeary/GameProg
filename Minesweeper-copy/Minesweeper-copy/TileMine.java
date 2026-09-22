@@ -10,8 +10,9 @@ public class TileMine extends Actor
 {
     private GreenfootImage image1;
     private GreenfootImage image2;
-    private GreenfootImage background;
-    boolean clicked = false;
+    private GreenfootImage image3;
+    boolean flagged = false;
+    boolean bombed = false;
     /**
      * Act - do whatever the TileBlank wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -20,23 +21,35 @@ public class TileMine extends Actor
     {
         image1 = new GreenfootImage ("Mine.png"); 
         image2 = new GreenfootImage ("BlankTile.png");
-        background = new GreenfootImage ("Background.png");
-        if (Greenfoot.mouseClicked(this) && Greenfoot.isKeyDown("z") == false) 
+        image3 = new GreenfootImage ("Flag.png");
+        if (Greenfoot.mouseClicked(this))
         {
-            setImage (image1);
-            clicked = true;
-        }
-        else if (clicked == true)
-        {
-            setImage (image1);
-        }
-        else if (Greenfoot.mouseClicked(this) && Greenfoot.isKeyDown("z") && clicked == false)
-        {
-            setImage (background);
-        }
-        else
-        {
-            setImage (image2);
+            if (Greenfoot.isKeyDown("z"))
+            {
+                if ((flagged == false) && (bombed == false))
+                {
+                    setImage (image3);
+                    flagged = true;
+                }
+                else if (flagged == true)
+                {
+                    setImage (image2);
+                    flagged = false;
+                }
+            }
+            else
+            {
+                if (flagged == true)
+                {
+                    //do nothing, you can't click a flagged square
+                }
+                else if (flagged == false)
+                {
+                    setImage (image1);
+                    bombed = true;
+                    Greenfoot.setWorld(new GameOver());
+                }
+            }
         }
     }
 }
