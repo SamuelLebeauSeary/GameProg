@@ -21,6 +21,7 @@ public class TileBlank extends Actor
     {
         image1 = new GreenfootImage ("Mine.png"); 
         image2 = new GreenfootImage ("BlankTile.png");
+        image3 = new GreenfootImage ("Flag.png");
         if (Greenfoot.mouseClicked(this))
         {
             if ((Greenfoot.isKeyDown("z")) && (bombed == false))
@@ -44,13 +45,10 @@ public class TileBlank extends Actor
                 }
                 else if (flagged == false)
                 {
-                    /*normally, this would set a number, but of course I don't know how to
-                    *do this yet, so I will just delete the tile for now
-                    */
-                    //set variable TileBlank to author TiileBlank
-                    //delete TileBlank
+                    World world = getWorld();
+                    world.removeObject(this);
                 }
             }
         }
-    }
+    }  
 }

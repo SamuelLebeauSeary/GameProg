@@ -47,7 +47,8 @@ public class TileMine extends Actor
                 {
                     setImage (image1);
                     bombed = true;
-                    Greenfoot.setWorld(new GameOver());
+                    World gameOverWorld = new GameOverWorld();
+                    Greenfoot.setWorld(gameOverWorld);
                 }
             }
         }
