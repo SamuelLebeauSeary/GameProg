@@ -11,6 +11,10 @@ public class TileBlank extends Actor
     private GreenfootImage image1;
     private GreenfootImage image2;
     private GreenfootImage image3;
+    private GreenfootImage image4;
+    private GreenfootImage image5;
+    private GreenfootImage image6;
+    private GreenfootImage image7;
     boolean flagged = false;
     boolean bombed = false;
     /**
@@ -19,9 +23,15 @@ public class TileBlank extends Actor
      */
     public void act()
     {
-        image1 = new GreenfootImage ("Mine.png"); 
-        image2 = new GreenfootImage ("BlankTile.png");
-        image3 = new GreenfootImage ("Flag.png");
+        MinesweeperBoard board = (MinesweeperBoard) getWorld();
+        board.showText(board.minesweeperBoard[0][1], 100,100);
+        image1 = new GreenfootImage("Mine.png"); 
+        image2 = new GreenfootImage("BlankTile.png");
+        image3 = new GreenfootImage("Flag.png");
+        image4 = new GreenfootImage("Tile 1.png");
+        image5 = new GreenfootImage("Tile 2.png");
+        image6 = new GreenfootImage("Tile 3.png");
+        image7 = new GreenfootImage("Tile 4.png");
         if (Greenfoot.mouseClicked(this))
         {
             if ((Greenfoot.isKeyDown("z")) && (bombed == false))
