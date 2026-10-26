@@ -68,10 +68,10 @@ public class TileBlank extends Actor
                     int cols = mineBoard[0].length;
                     for (int i = -1; i <= 1; i++) {
                         for (int j = -1; j <= 1; j++) {
-                            int neighborX = xCoord + i;
-                            int neighborY = yCoord + j;
-                            if (neighborX >= 0 && neighborX < rows && neighborY >= 0 && neighborY < cols) {
-                                if (mineBoard[neighborX][neighborY].equals("m")) {
+                            int nextX = xCoord + i;
+                            int nextY = yCoord + j;
+                            if (nextX >= 0 && nextX < rows && nextY >= 0 && nextY < cols) {
+                                if (mineBoard[nextX][nextY].equals("m")) {
                                     mineCount++;
                                 }
                             }
@@ -103,7 +103,7 @@ public class TileBlank extends Actor
                             //setImage(image11);
                         }
                     } else {
-                        //clear surrounding squares I guess
+                        //clear surrounding squares later
                     }
                 }
             }
