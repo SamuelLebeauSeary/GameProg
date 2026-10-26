@@ -17,6 +17,7 @@ public class TileBlank extends Actor
     private GreenfootImage image7;
     boolean flagged = false;
     boolean bombed = false;
+    public String mineBoard[][];
     /**
      * Act - do whatever the TileBlank wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -24,7 +25,6 @@ public class TileBlank extends Actor
     public void act()
     {
         MinesweeperBoard board = (MinesweeperBoard) getWorld();
-        board.showText(board.minesweeperBoard[0][1], 100,100);
         image1 = new GreenfootImage("Mine.png"); 
         image2 = new GreenfootImage("BlankTile.png");
         image3 = new GreenfootImage("Flag.png");
@@ -32,6 +32,7 @@ public class TileBlank extends Actor
         image5 = new GreenfootImage("Tile 2.png");
         image6 = new GreenfootImage("Tile 3.png");
         image7 = new GreenfootImage("Tile 4.png");
+        mineBoard = board.minesweeperBoard;
         if (Greenfoot.mouseClicked(this))
         {
             if ((Greenfoot.isKeyDown("z")) && (bombed == false))
@@ -51,12 +52,11 @@ public class TileBlank extends Actor
             {
                 if (flagged == true)
                 {
-                    //do nothing, you can't click a flagged square
+                    //do nothing, it's flagged, dummy      
                 }
                 else if (flagged == false)
                 {
-                    World world = getWorld();
-                    world.removeObject(this);
+                    //kill your mom I guess
                 }
             }
         }
