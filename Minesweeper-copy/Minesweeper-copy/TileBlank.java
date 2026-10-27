@@ -36,10 +36,10 @@ public class TileBlank extends Actor
         image5 = new GreenfootImage("Tile 2.png");
         image6 = new GreenfootImage("Tile 3.png");
         image7 = new GreenfootImage("Tile 4.png");
-        //image8 = new GreenfootImage("Tile 5.png");
-        //image9 = new GreenfootImage("Tile 6.png");
-        //image10 = new GreenfootImage("Tile 7.png");
-        //image11 = new GreenfootImage("Tile 8.png");
+        image8 = new GreenfootImage("Tile 5.png");
+        image9 = new GreenfootImage("Tile 6.png");
+        image10 = new GreenfootImage("Tile 7.png");
+        image11 = new GreenfootImage("Tile 8.png");
         mineBoard = board.minesweeperBoard;
         int xCoord = this.getX() / 32;
         int yCoord = this.getY() / 32;
@@ -91,16 +91,16 @@ public class TileBlank extends Actor
                             setImage(image7);
                         }
                         else if (mineCount == 5){
-                            //setImage(image8);
+                            setImage(image8);
                         }
                         else if (mineCount == 6){
-                            //setImage(image9);
+                            setImage(image9);
                         }
                         else if (mineCount == 7){
-                            //setImage(image10);
+                            setImage(image10);
                         }
                         else if (mineCount == 8){
-                            //setImage(image11);
+                            setImage(image11);
                         }
                     } else {
                         //clear surrounding squares later
