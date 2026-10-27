@@ -42,7 +42,7 @@ public class TileBlank extends Actor
         //image11 = new GreenfootImage("Tile 8.png");
         mineBoard = board.minesweeperBoard;
         int xCoord = this.getX() / 32;
-        int yCoord = this.getX() / 32;
+        int yCoord = this.getY() / 32;
         if (Greenfoot.mouseClicked(this))
         {
             if ((Greenfoot.isKeyDown("z")) && (bombed == false))
