@@ -19,6 +19,7 @@ public class TileBlank extends Actor
     private GreenfootImage image9;
     private GreenfootImage image10;
     private GreenfootImage image11;
+    private GreenfootImage image12;
     boolean flagged = false;
     boolean bombed = false;
     public String mineBoard[][];
@@ -40,6 +41,7 @@ public class TileBlank extends Actor
         image9 = new GreenfootImage("Tile 6.png");
         image10 = new GreenfootImage("Tile 7.png");
         image11 = new GreenfootImage("Tile 8.png");
+        image12 = new GreenfootImage("Tile 0.png");
         mineBoard = board.minesweeperBoard;
         int xCoord = this.getX() / 32;
         int yCoord = this.getY() / 32;
@@ -103,7 +105,7 @@ public class TileBlank extends Actor
                             setImage(image11);
                         }
                     } else {
-                        //clear surrounding squares later
+                        setImage(image12);
                     }
                 }
             }
