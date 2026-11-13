@@ -15,7 +15,6 @@ public class MinesweeperBoard extends World
      */
     public MinesweeperBoard()
     {    
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(512, 512, 1); 
         prepare();
     }
@@ -36,7 +35,6 @@ public class MinesweeperBoard extends World
             for (int col = 0; col < 16; col++)
             {
                 if (Greenfoot.getRandomNumber(5) == 1) {
-                    //I don't know how to make certain tiles hold values (for bombs)
                     TileMine tileMine = new TileMine();
                     addObject(tileMine, x + col * 32, x + row * 32);
                     minesweeperBoard [n][m] = "m";

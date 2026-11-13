@@ -28,4 +28,11 @@ public class GameOverWorld extends World
         bg.setColor(Color.RED);
         bg.drawString(message, x, y);
     }
+    public void act()
+    {
+        if (Greenfoot.isKeyDown("space"))
+        {
+            Greenfoot.setWorld(new MinesweeperBoard());
+        }
+    }
 }
