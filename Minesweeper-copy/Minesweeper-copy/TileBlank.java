@@ -68,8 +68,7 @@ public class TileBlank extends Actor
                 revealTile(xCoord, yCoord);
                 revealed = true;
                 blankCount = blankCount - 1;
-                System.out.println(blankCount); // this needs to be fixed please
-                 // Trigger flood fill when mineCount is 0
+                System.out.println(blankCount); // look at minesweeperBoard code
             }
         }
     }

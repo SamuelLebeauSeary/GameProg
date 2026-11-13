@@ -78,7 +78,7 @@ public class MinesweeperBoard extends World
         
     }
     public int getTotalBlanks(){
-        return totalBlanks;
+        return totalBlanks;//I need to update this variable rather than the other one
     }
 }
 
