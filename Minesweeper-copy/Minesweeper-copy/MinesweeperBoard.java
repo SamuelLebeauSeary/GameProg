@@ -9,6 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class MinesweeperBoard extends World
 {
     public String [] [] minesweeperBoard;
+    private int totalBlanks = 0;
     /**
      * Constructor for objects of class MyWorld.
      * 
@@ -45,6 +46,7 @@ public class MinesweeperBoard extends World
                     addObject(tileBlank, x + col * 32, y + row * 32);
                     minesweeperBoard [n] [m] = "b";
                     n++;
+                    totalBlanks++;
                 }
             }
             m++;
@@ -73,6 +75,10 @@ public class MinesweeperBoard extends World
             );
             n2++;
         }
+        
+    }
+    public int getTotalBlanks(){
+        return totalBlanks;
     }
 }
 

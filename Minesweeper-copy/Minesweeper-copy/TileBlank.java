@@ -44,6 +44,8 @@ public class TileBlank extends Actor
         image11 = new GreenfootImage("Tile 8.png");
         image12 = new GreenfootImage("Tile 0.png");
         mineBoard = board.minesweeperBoard;
+        int blankCount = board.getTotalBlanks();
+        int mineCount = (16*16) - blankCount;
         int xCoord = this.getX() / 32;
         int yCoord = this.getY() / 32;
         if (Greenfoot.mouseClicked(this))
@@ -61,10 +63,12 @@ public class TileBlank extends Actor
                     flagged = false;
                 }
             }
-            else
+            else // if Z isn't clicked
             {
                 revealTile(xCoord, yCoord);
                 revealed = true;
+                blankCount = blankCount - 1;
+                System.out.println(blankCount); // this needs to be fixed please
                  // Trigger flood fill when mineCount is 0
             }
         }
