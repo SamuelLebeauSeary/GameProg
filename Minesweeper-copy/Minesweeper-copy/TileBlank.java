@@ -1,5 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-
+import java.util.*;
 /**
  * Write a description of class TileBlank here.
  * 
@@ -62,53 +62,92 @@ public class TileBlank extends Actor
             }
             else
             {
-                if (flagged) { 
-                    // Do nothing, it's flagged
-                } else {
-                    int mineCount = 0;
-                    int rows = mineBoard.length;
-                    int cols = mineBoard[0].length;
-                    for (int i = -1; i <= 1; i++) {
-                        for (int j = -1; j <= 1; j++) {
-                            int nextX = xCoord + i;
-                            int nextY = yCoord + j;
-                            if (nextX >= 0 && nextX < rows && nextY >= 0 && nextY < cols) {
-                                if (mineBoard[nextX][nextY].equals("m")) {
-                                    mineCount++;
-                                }
-                            }
-                        }
-                    }
-                    if (mineCount > 0) {
-                        if (mineCount == 1){
-                            setImage(image4);
-                        }
-                        else if (mineCount == 2){
-                            setImage(image5);
-                        }
-                        else if (mineCount == 3){
-                            setImage(image6);
-                        }
-                        else if (mineCount == 4){
-                            setImage(image7);
-                        }
-                        else if (mineCount == 5){
-                            setImage(image8);
-                        }
-                        else if (mineCount == 6){
-                            setImage(image9);
-                        }
-                        else if (mineCount == 7){
-                            setImage(image10);
-                        }
-                        else if (mineCount == 8){
-                            setImage(image11);
-                        }
-                    } else {
-                        setImage(image12);
+                revealTile(xCoord, yCoord);
+                //revealEmptyCourt();
+                 // Trigger flood fill when mineCount is 0
+            }
+        }
+    }
+
+
+    public void revealEmptyCourt()
+    {
+        // Flood fill: tell all 8 surrounding TileBlank actors to reveal themselves
+        for (int i = -1; i <= 1; i++) {
+            for (int j = -1; j <= 1; j++) {
+                // Skip the center tile (itself)
+                if (i == 0 && j == 0) {
+                    continue;
+                }
+
+
+                // Calculate pixel coordinates of the neighbor (each tile is 32x32)
+                int neighborPixelX = getX() + (i * 32);
+                int neighborPixelY = getY() + (j * 32);
+
+
+                // Find the TileBlank actor at that pixel location
+                List<TileBlank> neighbors = getWorld().getObjectsAt(neighborPixelX, neighborPixelY, TileBlank.class);
+
+
+                if (!neighbors.isEmpty()) {
+                    TileBlank neighbor = neighbors.get(0);
+                    int nextX = neighbor.getX() / 32;
+                    int nextY = neighbor.getY() / 32;
+                    neighbor.revealTile(nextX, nextY);
+                }
+            }
+        }
+    }
+
+
+    public void revealTile(int xCoord, int yCoord)
+    {
+        int mineCount = 0;
+        int rows = mineBoard.length;
+        int cols = mineBoard[0].length;
+        for (int i = -1; i <= 1; i++) {
+            for (int j = -1; j <= 1; j++) {
+                int nextX = xCoord + i;
+                int nextY = yCoord + j;
+                if (nextX >= 0 && nextX < rows && nextY >= 0 && nextY < cols) {
+                    if (mineBoard[nextX][nextY].equals("m")) {
+                        mineCount++;
                     }
                 }
             }
         }
-    }  
+
+
+        if (mineCount > 0) {
+            if (mineCount == 1){
+                setImage(image4);
+            }
+            else if (mineCount == 2){
+                setImage(image5);
+            }
+            else if (mineCount == 3){
+                setImage(image6);
+            }
+            else if (mineCount == 4){
+                setImage(image7);
+            }
+            else if (mineCount == 5){
+                setImage(image8);
+            }
+            else if (mineCount == 6){
+                setImage(image9);
+            }
+            else if (mineCount == 7){
+                setImage(image10);
+            }
+            else if (mineCount == 8){
+                setImage(image11);
+            }
+        } else {
+            setImage(image12);
+            //revealEmptyCourt();
+        }
+        
+    }
 }
