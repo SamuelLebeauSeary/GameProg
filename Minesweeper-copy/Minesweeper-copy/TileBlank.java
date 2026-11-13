@@ -22,6 +22,7 @@ public class TileBlank extends Actor
     private GreenfootImage image12;
     boolean flagged = false;
     boolean bombed = false;
+    boolean revealed = false;
     public String mineBoard[][];
     /**
      * Act - do whatever the TileBlank wants to do. This method is called whenever
@@ -63,7 +64,7 @@ public class TileBlank extends Actor
             else
             {
                 revealTile(xCoord, yCoord);
-                //revealEmptyCourt();
+                revealed = true;
                  // Trigger flood fill when mineCount is 0
             }
         }
@@ -103,9 +104,21 @@ public class TileBlank extends Actor
 
     public void revealTile(int xCoord, int yCoord)
     {
-        int mineCount = 0;
+      // 1. Early exit: already uncovered, flagged, or bombed
+        if (revealed || flagged || bombed) {
+            return;
+        }
+        
         int rows = mineBoard.length;
         int cols = mineBoard[0].length;
+    
+        // 2. Early exit: coordinates out of array bounds
+        if (xCoord < 0 || xCoord >= rows || yCoord < 0 || yCoord >= cols) {
+            return;
+        }
+        int mineCount = 0;
+
+
         for (int i = -1; i <= 1; i++) {
             for (int j = -1; j <= 1; j++) {
                 int nextX = xCoord + i;
@@ -146,8 +159,8 @@ public class TileBlank extends Actor
             }
         } else {
             setImage(image12);
-            //revealEmptyCourt();
-        }
-        
+            revealed = true; // make sure a revealed tile was revealed 
+            revealEmptyCourt();
+        }    
     }
 }
