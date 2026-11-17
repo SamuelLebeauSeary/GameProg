@@ -24,13 +24,10 @@ public class TileBlank extends Actor
     boolean bombed = false;
     boolean revealed = false;
     public String mineBoard[][];
-    /**
-     * Act - do whatever the TileBlank wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    public void act()
+    MinesweeperBoard board; 
+    public TileBlank()
     {
-        MinesweeperBoard board = (MinesweeperBoard) getWorld();
+        board = (MinesweeperBoard) getWorld();
         image1 = new GreenfootImage("Mine.png"); 
         image2 = new GreenfootImage("BlankTile.png");
         image3 = new GreenfootImage("Flag.png");
@@ -43,33 +40,50 @@ public class TileBlank extends Actor
         image10 = new GreenfootImage("Tile 7.png");
         image11 = new GreenfootImage("Tile 8.png");
         image12 = new GreenfootImage("Tile 0.png");
+    }
+    /**
+     * Act - do whatever the TileBlank wants to do. This method is called whenever
+     * the 'Act' or 'Run' button gets pressed in the environment.
+     */
+    public void act()
+    {
+        if (board == null)
+        {
+            board = (MinesweeperBoard) getWorld();
+        }
+
         mineBoard = board.minesweeperBoard;
-        int blankCount = board.getTotalBlanks();
-        int mineCount = (16*16) - blankCount;
         int xCoord = this.getX() / 32;
         int yCoord = this.getY() / 32;
         if (Greenfoot.mouseClicked(this))
         {
             if ((Greenfoot.isKeyDown("z")) && (bombed == false))
             {
-                if ((flagged == false))
+                if ((flagged == false && revealed == false))
                 {
                     setImage (image3);
                     flagged = true;
+                    board.addFlag();
                 }
                 else if ((flagged == true))
                 {
                     setImage (image2);
                     flagged = false;
+                    board.removeFlag();
                 }
             }
             else // if Z isn't clicked
             {
                 revealTile(xCoord, yCoord);
                 revealed = true;
-                blankCount = blankCount - 1;
-                System.out.println(blankCount); // look at minesweeperBoard code
             }
+        }
+        if (board.getTotalBlanks() == 0){
+            World BetweenRounds = new BetweenRounds();
+            Greenfoot.setWorld(BetweenRounds);
+        }
+        if (Greenfoot.isKeyDown("space")){
+            board.testingHack();
         }
     }
 
@@ -111,7 +125,10 @@ public class TileBlank extends Actor
         if (revealed || flagged || bombed) {
             return;
         }
-        
+        if (mineBoard == null || board == null)
+        {
+            return;
+        }
         int rows = mineBoard.length;
         int cols = mineBoard[0].length;
     
@@ -133,8 +150,9 @@ public class TileBlank extends Actor
                 }
             }
         }
-
-
+        
+        revealed = true; // make sure a revealed tile was revealed
+        board.updateBlanks();
         if (mineCount > 0) {
             if (mineCount == 1){
                 setImage(image4);
@@ -160,9 +178,9 @@ public class TileBlank extends Actor
             else if (mineCount == 8){
                 setImage(image11);
             }
+
         } else {
             setImage(image12);
-            revealed = true; // make sure a revealed tile was revealed 
             revealEmptyCourt();
         }    
     }

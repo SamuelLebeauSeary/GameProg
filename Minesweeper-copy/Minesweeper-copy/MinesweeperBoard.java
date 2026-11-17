@@ -9,7 +9,9 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class MinesweeperBoard extends World
 {
     public String [] [] minesweeperBoard;
-    private int totalBlanks = 0;
+    private int totalBlanks = -1;
+    private int totalMines = 0;
+    private int flags = 0;
     /**
      * Constructor for objects of class MyWorld.
      * 
@@ -75,10 +77,28 @@ public class MinesweeperBoard extends World
             );
             n2++;
         }
-        
+        totalMines = 16 * 16 - totalBlanks;
+        flags = totalMines;
+        System.out.println(totalBlanks + " blanks");
+        System.out.println(flags + " mines");
     }
     public int getTotalBlanks(){
-        return totalBlanks;//I need to update this variable rather than the other one
+        return totalBlanks;
+    }
+    public int updateBlanks(){
+        totalBlanks--;
+        return totalBlanks;
+    }
+    public void addFlag(){
+        flags--;
+        System.out.println(flags);
+    }
+    public void removeFlag(){
+        flags++;
+        System.out.println(flags);
+    }
+    public int testingHack(){
+        totalBlanks = 0;
+        return totalBlanks;
     }
 }
-

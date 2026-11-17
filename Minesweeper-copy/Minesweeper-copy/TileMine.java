@@ -13,6 +13,7 @@ public class TileMine extends Actor
     private GreenfootImage image3;
     boolean flagged = false;
     boolean bombed = false;
+    MinesweeperBoard board; 
     /**
      * Act - do whatever the TileBlank wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -22,6 +23,7 @@ public class TileMine extends Actor
         image1 = new GreenfootImage ("Mine.png"); 
         image2 = new GreenfootImage ("BlankTile.png");
         image3 = new GreenfootImage ("Flag.png");
+        board = (MinesweeperBoard) getWorld();
         if (Greenfoot.mouseClicked(this))
         {
             if (Greenfoot.isKeyDown("z"))
@@ -30,11 +32,13 @@ public class TileMine extends Actor
                 {
                     setImage (image3);
                     flagged = true;
+                    board.addFlag();
                 }
                 else if (flagged == true)
                 {
                     setImage (image2);
                     flagged = false;
+                    board.removeFlag();
                 }
             }
             else
