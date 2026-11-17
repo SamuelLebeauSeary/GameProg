@@ -82,9 +82,6 @@ public class TileBlank extends Actor
             World BetweenRounds = new BetweenRounds();
             Greenfoot.setWorld(BetweenRounds);
         }
-        if (Greenfoot.isKeyDown("space")){
-            board.testingHack();
-        }
     }
 
 

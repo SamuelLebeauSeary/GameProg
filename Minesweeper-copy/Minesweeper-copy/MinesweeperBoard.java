@@ -53,8 +53,7 @@ public class MinesweeperBoard extends World
             }
             m++;
             n = 0;
-        }
-        /*
+        }/*
          * this next section is to see which tiles are mines for testing
          */
         for (int row2 = 0; row2 < 16; ++row2){
@@ -96,9 +95,5 @@ public class MinesweeperBoard extends World
     public void removeFlag(){
         flags++;
         System.out.println(flags);
-    }
-    public int testingHack(){
-        totalBlanks = 0;
-        return totalBlanks;
     }
 }
