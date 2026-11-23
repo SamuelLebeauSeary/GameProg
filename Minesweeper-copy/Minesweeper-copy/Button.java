@@ -12,6 +12,7 @@ public class Button extends Actor
     private GreenfootImage pick1;
     private GreenfootImage pick2;
     private GreenfootImage pick3;
+    static int minusOne = 0;
     BetweenRounds between;
     public Button()
     {
@@ -28,6 +29,7 @@ public class Button extends Actor
             setImage(pick1);
             if (Greenfoot.mouseClicked(this)){
                 between.choice = 1;
+                minusOne++;
                 Greenfoot.setWorld(MinesweeperBoard);
             }
         }
