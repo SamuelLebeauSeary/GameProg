@@ -18,7 +18,6 @@ public class GameOverWorld extends World
         super(512, 512, 1); 
         showTextWithBigRedFont("You Lost", 154, 256);
     }
-    
     public void showTextWithBigRedFont(String message, int x, int y)
     {
         GreenfootImage bg = getBackground();

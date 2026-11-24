@@ -66,5 +66,5 @@ public class TileMine extends Actor
                 }
             }
         }
-    }
+    } 
 }
