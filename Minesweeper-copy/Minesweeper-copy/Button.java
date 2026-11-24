@@ -13,6 +13,7 @@ public class Button extends Actor
     private GreenfootImage pick2;
     private GreenfootImage pick3;
     static int minusOne = 0;
+    static int tileCompass = 0;
     BetweenRounds between;
     public Button()
     {
@@ -22,7 +23,7 @@ public class Button extends Actor
     public void act()
     {
         pick1 = new GreenfootImage ("Tile -1 Select.png");
-        //pick2 = new GreenfootImage ("");
+        pick2 = new GreenfootImage ("Tile Compass Select.png");
         //pick3 = new GreenfootImage ("");
         MinesweeperBoard MinesweeperBoard = new MinesweeperBoard();
         if (index == 0){
@@ -33,13 +34,14 @@ public class Button extends Actor
                 Greenfoot.setWorld(MinesweeperBoard);
             }
         }
-        //if (index == 1){
-        //    setImage(pick2);
-        //    if (Greenfoot.mouseClicked(this)){
-        //        between.choice = 2;
-        //        Greenfoot.setWorld(MinesweeperBoard);
-        //    }
-        //}
+        if (index == 1){
+            setImage(pick2);
+            if (Greenfoot.mouseClicked(this)){
+                between.choice = 2;
+                tileCompass++;
+                Greenfoot.setWorld(MinesweeperBoard);
+            }
+        }
         //if (index == 2){
         //    setImage(pick3);
         //    if (Greenfoot.mouseClicked(this)){

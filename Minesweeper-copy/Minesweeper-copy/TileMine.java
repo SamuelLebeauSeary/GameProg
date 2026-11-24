@@ -1,4 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.util.*;
 
 /**
  * Write a description of class TileMine here.
@@ -42,29 +43,29 @@ public class TileMine extends Actor
                     flagged = false;
                     board.removeFlag();
                 }
-            }
-            else
-            {
-                if (flagged == true)
-                {
-                    //do nothing, you can't click a flagged square
                 }
-                else if (flagged == false)
+                else
                 {
+                    if (flagged == true)
+                    {
+                    //do nothing, you can't click a flagged square
+                    }
+                    else if (flagged == false)
+                    {
                     if (Button.minusOne > 0)
                     {
-                        setImage(image4);
-                        Button.minusOne--;
-                        bombed = true;
-                        flagged = true;
+                            setImage(image4);
+                            Button.minusOne--;
+                            bombed = true;
+                            flagged = true;
                     }else{
-                        setImage (image1);
-                        bombed = true;
-                        World gameOverWorld = new GameOverWorld();
-                        Greenfoot.setWorld(gameOverWorld);
+                            setImage (image1);
+                            bombed = true;
+                            World gameOverWorld = new GameOverWorld();
+                            Greenfoot.setWorld(gameOverWorld);
                     }
                 }
-            }
+            } 
         }
-    } 
+    }
 }

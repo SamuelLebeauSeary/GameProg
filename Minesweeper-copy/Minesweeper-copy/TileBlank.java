@@ -20,6 +20,7 @@ public class TileBlank extends Actor
     private GreenfootImage image10;
     private GreenfootImage image11;
     private GreenfootImage image12;
+    private GreenfootImage image13;
     boolean flagged = false;
     boolean bombed = false;
     boolean revealed = false;
@@ -40,6 +41,7 @@ public class TileBlank extends Actor
         image10 = new GreenfootImage("Tile 7.png");
         image11 = new GreenfootImage("Tile 8.png");
         image12 = new GreenfootImage("Tile 0.png");
+        image13 = new GreenfootImage ("Tile Compass.png");
     }
     /**
      * Act - do whatever the TileBlank wants to do. This method is called whenever
@@ -76,6 +78,9 @@ public class TileBlank extends Actor
             {
                 revealTile(xCoord, yCoord);
                 revealed = true;
+            }
+            if  (Button.tileCompass > 0){
+                activateCompass();
             }
         }
         if (board.getTotalBlanks() == 0){
@@ -118,7 +123,7 @@ public class TileBlank extends Actor
 
     public void revealTile(int xCoord, int yCoord)
     {
-      // 1. Early exit: already uncovered, flagged, or bombed
+        // 1. Early exit: already uncovered, flagged, or bombed
         if (revealed || flagged || bombed) {
             return;
         }
@@ -180,5 +185,40 @@ public class TileBlank extends Actor
             setImage(image12);
             revealEmptyCourt();
         }    
+    }
+    public void activateCompass()
+    {
+            if (Button.tileCompass > 0)
+            {
+                int r = Greenfoot.getRandomNumber(11);
+                if (r == 10)
+                {
+                    for (int i = -1; i <= 1; i++) {
+                        for (int j = -1; j <= 1; j++) {
+                            // Skip the center tile (itself)
+                            if (i == 0 && j == 0) {
+                             continue;
+                            }
+                            int neighborPixelX = getX() + (i * 32);
+                            int neighborPixelY = getY() + (j * 32);
+                            List<TileBlank> blankneighbors = getWorld().getObjectsAt(neighborPixelX, neighborPixelY, TileBlank.class);
+                            if (!blankneighbors.isEmpty())
+                            {
+                                TileBlank neighbor = blankneighbors.get(0);
+                                int nextX = neighbor.getX() / 32;
+                                int nextY = neighbor.getY() / 32;
+                                neighbor.revealTile(nextX, nextY);
+                            }
+                            List<TileMine> mineNeighbors = getWorld().getObjectsAt (neighborPixelX, neighborPixelY, TileMine.class);
+                            if (!mineNeighbors.isEmpty()){
+                                TileMine mine = mineNeighbors.get(0);
+                                mine.setImage("Tile Compass.png");
+                                mine.bombed = true;
+                                mine.flagged = true;
+                            }
+                        }
+                    }
+                }
+            }
     }
 }
