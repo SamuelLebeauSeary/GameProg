@@ -29,6 +29,7 @@ public class GameOverWorld extends World
     public void act()
     {
         Button.tileCompass = 0;
+        Button.minusOne = 0;
         if (Greenfoot.isKeyDown("space"))
         {
             Greenfoot.setWorld(new MinesweeperBoard());

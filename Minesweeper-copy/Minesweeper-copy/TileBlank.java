@@ -53,7 +53,6 @@ public class TileBlank extends Actor
         {
             board = (MinesweeperBoard) getWorld();
         }
-
         mineBoard = board.minesweeperBoard;
         int xCoord = this.getX() / 32;
         int yCoord = this.getY() / 32;
@@ -74,13 +73,12 @@ public class TileBlank extends Actor
                     board.removeFlag();
                 }
             }
-            else // if Z isn't clicked
+            else if (revealed == false && flagged == false && bombed == false) 
             {
                 revealTile(xCoord, yCoord);
-                revealed = true;
-            }
-            if  (Button.tileCompass > 0){
-                activateCompass();
+                if  (Button.tileCompass > 0){
+                    activateCompass();
+                }
             }
         }
         if (board.getTotalBlanks() == 0){
