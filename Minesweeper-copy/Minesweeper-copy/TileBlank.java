@@ -21,6 +21,7 @@ public class TileBlank extends Actor
     private GreenfootImage image11;
     private GreenfootImage image12;
     private GreenfootImage image13;
+    private GreenfootImage image14;
     boolean flagged = false;
     boolean bombed = false;
     boolean revealed = false;
@@ -41,7 +42,8 @@ public class TileBlank extends Actor
         image10 = new GreenfootImage("Tile 7.png");
         image11 = new GreenfootImage("Tile 8.png");
         image12 = new GreenfootImage("Tile 0.png");
-        image13 = new GreenfootImage ("Tile Compass.png");
+        image13 = new GreenfootImage("Tile Compass.png");
+        image14 = new GreenfootImage("Tile Diagonal.png");
     }
     /**
      * Act - do whatever the TileBlank wants to do. This method is called whenever
@@ -118,7 +120,6 @@ public class TileBlank extends Actor
         }
     }
 
-
     public void revealTile(int xCoord, int yCoord)
     {
         // 1. Early exit: already uncovered, flagged, or bombed
@@ -137,7 +138,6 @@ public class TileBlank extends Actor
             return;
         }
         int mineCount = 0;
-
 
         for (int i = -1; i <= 1; i++) {
             for (int j = -1; j <= 1; j++) {
@@ -178,7 +178,6 @@ public class TileBlank extends Actor
             else if (mineCount == 8){
                 setImage(image11);
             }
-
         } else {
             setImage(image12);
             revealEmptyCourt();
@@ -193,7 +192,6 @@ public class TileBlank extends Actor
                 {
                     for (int i = -1; i <= 1; i++) {
                         for (int j = -1; j <= 1; j++) {
-                            // Skip the center tile (itself)
                             if (i == 0 && j == 0) {
                              continue;
                             }
@@ -218,5 +216,14 @@ public class TileBlank extends Actor
                     }
                 }
             }
+    }
+    public void activateLines(){
+        for (int i = -1; i <= 1; i++) {
+            for (int j = -1; j <= 1; j++) {
+                if (i == 0 && j == 0) {
+                    continue;
+                }
+            }
+        }
     }
 }
